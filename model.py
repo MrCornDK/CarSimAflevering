@@ -57,7 +57,7 @@ class Engine(object):
         self.theTank = theTank  # Instans af Tank
 
     def updateModel(self, dt):
-        if self.theTank.contents != 0:
+        if self.theTank.contents > 0:
             self.currentRpm = self.throttlePosition * self.maxRpm
             """if self.currentRpm != 0:
                 muligConsumptionProcent = ((self.currentRpm * self.consumptionConstant) / self.theTank.contents)
