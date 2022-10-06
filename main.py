@@ -26,6 +26,7 @@ class CarView(GridLayout):
     fuelMeter = NumericProperty(0)
     currentEngineRpm = StringProperty('000')
     currentWheelRpm = StringProperty('000')
+    currentSpeedKmh = StringProperty('000')
 
     def tick(self, dt):
         self.updateModel(dt)
@@ -44,6 +45,7 @@ class CarView(GridLayout):
         self.fuelMeter = self.theCar.theEngine.theTank.contents
         self.currentEngineRpm = str(round(self.theCar.theEngine.currentRpm)).zfill(3)
         self.currentWheelRpm = str(round(self.theCar.theEngine.currentRpm * self.theCar.theEngine.theGearbox.gears[self.theCar.theEngine.theGearbox.currentGear])).zfill(3)
+        self.currentSpeedKmh = str(round(self.theCar.theEngine.currentRpm * self.theCar.theEngine.theGearbox.gears[self.theCar.theEngine.theGearbox.currentGear]*self.theCar.theEngine.theGearbox.wheels["frontRight"].omkreds*60)/100/1000).zfill(3)
 
 if __name__ in ('__main__', '__android__'):
     CarSimApp().run()

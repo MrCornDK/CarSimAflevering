@@ -2,8 +2,9 @@ from random import randint
 
 
 class Wheel(object):
-    def __init__(self, orientation=randint(0, 360)):
+    def __init__(self, orientation=randint(0, 360), omkreds = 1000):
         self.orientation = orientation  # int Range 0 to 360 (grader)
+        self.omkreds = omkreds # int cm
 
     def rotate(self, revolutions):
         self.orientation = (self.orientation + revolutions * 360) % 360
