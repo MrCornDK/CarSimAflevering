@@ -2,12 +2,12 @@ from random import randint
 
 
 class Wheel(object):
-    def __init__(self, orientation=randint(0, 360), omkreds = 1000):
+    def __init__(self, orientation=randint(0, 360), omkreds = 135):
         self.orientation = orientation  # int Range 0 to 360 (grader)
         self.omkreds = omkreds # int cm
 
     def rotate(self, revolutions):
-        self.orientation = (self.orientation + revolutions * 360) % 360
+        self.orientation = (self.orientation + round(revolutions, 4) * 360) % 360
 
 
 class Gearbox(object):
@@ -73,7 +73,7 @@ class Engine(object):
 
 
 class Car(object):
-    def __init__(self, theEngine=Engine()):
+    def __init__(self, theEngine = Engine()):
         self.theEngine = theEngine
 
     def updateModel(self, dt):
