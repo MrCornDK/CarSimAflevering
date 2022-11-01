@@ -2,7 +2,7 @@
     cols: 4
 
     Image:
-        source: 'car-wheel.png'
+        source: 'png/car-wheel.png'
         pos: self.parent.pos
         size_hint: .5,.4
         canvas.before:
@@ -18,7 +18,7 @@
     Label:
         text: '{} Wheel RPM\n {} Km/h'.format(root.currentWheelRpm, root.currentSpeedKmh)
     Image:
-        source: 'car-wheel.png'
+        source: 'png/car-wheel.png'
         pos: self.parent.pos
         size_hint: .5,.4
         canvas.before:
@@ -48,11 +48,11 @@
             text: '-'
             on_release: root.theCar.theEngine.theGearbox.shiftDown()
     Image:
-        source: 'gearbox.png'
+        source: 'png/gearbox.png'
     Image:
-        source: 'engine.png'
+        source: 'png/engine.png'
     Image:
-        source: 'car-wheel.png'
+        source: 'png/car-wheel.png'
         pos: self.parent.pos
         size_hint: .5,.4
         canvas.before:
@@ -75,7 +75,7 @@
         orientation: 'vertical'
         on_touch_move: root.theCar.theEngine.throttlePosition = slider.value
     Image:
-        source: 'car-wheel.png'
+        source: 'png/car-wheel.png'
         pos: self.parent.pos
         size_hint: .5,.4
         canvas.before:
