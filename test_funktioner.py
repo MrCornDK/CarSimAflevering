@@ -50,16 +50,17 @@ class TestCase:
         # Fuel contents
         car.theEngine.theTank.contents = self.f_content[0]
 
-        # Fuel add
-        if self.currentRpm[1] is not None:
-            car.theEngine.theTank.contents += self.f_content[1]
+        # Refuel
+        if self.f_content[1] is not None:
+            car.theEngine.theTank.refuel()
 
 
-        # Throttle
+        # currentRpm
         car.theEngine.currentRpm = int(self.currentRpm[0])
         if self.currentRpm[1] is not None:
             car.theEngine.currentRpm += self.currentRpm[1]
 
+        # Throttle
         car.theEngine.throttlePosition = self.throttlePosition[0]
         if self.throttlePosition[1] is not None:
             car.theEngine.throttlePosition += self.throttlePosition[1]
@@ -95,8 +96,8 @@ class TestCase:
         # Throttle Wheel Fuel
         self.throttle_process(car)
 
-
         self.executed = True
+
 
 
 class TestCases:
