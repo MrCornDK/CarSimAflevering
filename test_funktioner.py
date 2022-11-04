@@ -46,7 +46,7 @@ class TestCase:
             self.clutchEngaged.append(car.theEngine.theGearbox.clutchEngaged)
 
 
-    def throttle_process(self, car):
+    def throttle_process(self, car, dt):
         # Fuel contents
         car.theEngine.theTank.contents = self.f_content[0]
 
@@ -63,14 +63,14 @@ class TestCase:
         # Throttle
         car.theEngine.throttlePosition = self.throttlePosition[0]
         if self.throttlePosition[1] is not None:
-            car.theEngine.throttlePosition += self.throttlePosition[1]
+            car.theEngine.throttlePosition = self.throttlePosition[1]
 
         # wheel
         for wheel in car.theEngine.theGearbox.wheels:
             car.theEngine.theGearbox.wheels[wheel].orientation = int(self.wheel_orientation[0])
 
         # update
-        car.updateModel(60)
+        car.updateModel(dt)
 
         # fuel result
         if len(self.f_content) < 3:
@@ -86,15 +86,15 @@ class TestCase:
 
         # wheel result
         if len(self.wheel_orientation) < 3:
-            self.wheel_orientation.append(car.theEngine.theGearbox.wheels["frontLeft"].orientation/4)
+            self.wheel_orientation.append(round(car.theEngine.theGearbox.wheels["frontLeft"].orientation/4))
 
 
-    def run(self, car):
+    def run(self, car, dt):
         # Gear
         self.gear_process(car)
 
         # Throttle Wheel Fuel
-        self.throttle_process(car)
+        self.throttle_process(car, dt)
 
         self.executed = True
 
@@ -105,7 +105,7 @@ class TestCases:
         self.car = car
         self.tests = tests
 
-    def run_cases(self, ark):
+    def run_cases(self, ark, dt):
         prev_case = None
         for case in self.tests:
             if prev_case is not None:
@@ -117,7 +117,7 @@ class TestCases:
                             case.__dict__[key][0] = prev_case.__dict__[key][2]
 
             # run
-            case.run(self.car)
+            case.run(self.car, dt)
 
             # print to terminal / save results to
             print(case.desc)

@@ -7,7 +7,7 @@ class Wheel(object):
         self.omkreds = omkreds # int cm
 
     def rotate(self, revolutions):
-        self.orientation = (self.orientation + round(revolutions, 4) * 360) % 360
+        self.orientation = (self.orientation + revolutions   * 360) % 360
 
 
 class Gearbox(object):

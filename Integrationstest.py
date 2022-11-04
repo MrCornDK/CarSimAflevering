@@ -8,9 +8,9 @@ test_sheet = wb['test']
 
 
 # Burde have integreret op samme måde som test cases
-# But time is a thing and i have a deadline.
+# But time is a thing and i have a deadline. And if it works it works
 settings_order = ["wheel_orientation", "wheel_omkreds", "wheels", "currentGear", "clutchEngaged", "gears",
-                  "throttlePosition", "currentRpm", "consumptionConstant", "maxRpm", "f_capacity", "f_content"]
+                  "throttlePosition", "currentRpm", "consumptionConstant", "maxRpm", "f_capacity", "f_content", "dt"]
 
 
 # make new car with custom settings
@@ -62,7 +62,7 @@ def main(settings_order, ark):
 
 
     # Test Car
-    test_cases.run_cases(ark)
+    test_cases.run_cases(ark, float(settings["dt"]))
     wb.save("test.xlsx")
     wb.close()
 
